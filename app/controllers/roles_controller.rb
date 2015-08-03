@@ -12,13 +12,14 @@ class RolesController < ApplicationController
 
   def create_row
     @role = Role.new
+
     @role.character_name = params[:character_name]
     @role.movie_id = params[:movie_id]
     @role.actor_id = params[:actor_id]
 
     @role.save
 
-    render("show")
+    redirect_to("http://localhost:3000/roles/#{ @role.id }")
   end
 
   def edit_form
@@ -34,12 +35,12 @@ class RolesController < ApplicationController
 
     @role.save
 
-    render("show")
+    redirect_to("http://localhost:3000/roles/#{ @role.id }")
   end
 
   def destroy
     @role = Role.find(params[:id])
-
+    @id = @role.character_name
     @role.destroy
   end
 end

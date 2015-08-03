@@ -12,6 +12,7 @@ class ActorsController < ApplicationController
 
   def create_row
     @actor = Actor.new
+
     @actor.dob = params[:dob]
     @actor.name = params[:name]
     @actor.bio = params[:bio]
@@ -19,7 +20,7 @@ class ActorsController < ApplicationController
 
     @actor.save
 
-    render("show")
+    redirect_to("http://localhost:3000/actors/#{ @actor.id }")
   end
 
   def edit_form
@@ -36,12 +37,12 @@ class ActorsController < ApplicationController
 
     @actor.save
 
-    render("show")
+    redirect_to("http://localhost:3000/actors/#{ @actor.id }")
   end
 
   def destroy
     @actor = Actor.find(params[:id])
-
+    @name = @actor.name
     @actor.destroy
   end
 end
